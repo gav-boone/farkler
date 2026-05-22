@@ -1,6 +1,7 @@
 package farkler;
 
 import java.util.Scanner;
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +22,8 @@ public class Farkle {
             Arrays.fill(dice, die);
 
             Integer[] roll = Roll.roll(dice);
+
+            roll = new Integer[]{4, 4, 4, 4, 4, 4};
 
             System.out.printf("%s \n", Arrays.toString(roll));
             System.out.printf("%d \n", score);
@@ -51,42 +54,84 @@ public class Farkle {
                 if (counts.getOrDefault(1, 0) == 3) {
                     score += 300;
                     for (int i = 0; i < indexes.length; i++) {
-                        if (indexes[i] == 1)
+                        if (roll[indexes[i]] == 1)
                             roll[indexes[i]] = 0;
                     }
                 }
                 if (counts.getOrDefault(2, 0) == 3) {
                     score += 200;
                     for (int i = 0; i < indexes.length; i++) {
-                        if (indexes[i] == 2)
+                        if (roll[indexes[i]] == 2)
                             roll[indexes[i]] = 0;
                     }
                 }
                 if (counts.getOrDefault(3, 0) == 3) {
                     score += 300;
                     for (int i = 0; i < indexes.length; i++) {
-                        if (indexes[i] == 3)
+                        if (roll[indexes[i]] == 3)
                             roll[indexes[i]] = 0;
                     }
                 }
                 if (counts.getOrDefault(4, 0) == 3) {
                     score += 400;
                     for (int i = 0; i < indexes.length; i++) {
-                        if (indexes[i] == 4)
+                        if (roll[indexes[i]] == 4)
                             roll[indexes[i]] = 0;
                     }
                 }
                 if (counts.getOrDefault(5, 0) == 3) {
                     score += 500;
                     for (int i = 0; i < indexes.length; i++) {
-                        if (indexes[i] == 5)
+                        if (roll[indexes[i]] == 5)
                             roll[indexes[i]] = 0;
                     }
                 }
                 if (counts.getOrDefault(6, 0) == 3) {
                     score += 600;
                     for (int i = 0; i < indexes.length; i++) {
-                        if (indexes[i] == 6)
+                        if (roll[indexes[i]] == 6)
+                            roll[indexes[i]] = 0;
+                    }
+                }
+                if (counts.containsValue(4)) {
+                    score += 1000;
+                    int key = 0;
+                    for (Map.Entry<Integer, Integer> entry : counts.entrySet()) {
+                        if (entry.getValue().equals(4)) {
+                            key = entry.getKey();
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < indexes.length; i++) {
+                        if (roll[indexes[i]] == key)
+                            roll[indexes[i]] = 0;
+                    }
+                }
+                if (counts.containsValue(5)) {
+                    score += 2000;
+                    int key = 0;
+                    for (Map.Entry<Integer, Integer> entry : counts.entrySet()) {
+                        if (entry.getValue().equals(5)) {
+                            key = entry.getKey();
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < indexes.length; i++) {
+                        if (roll[indexes[i]] == key)
+                            roll[indexes[i]] = 0;
+                    }
+                }
+                if (counts.containsValue(6)) {
+                    score += 3000;
+                    int key = 0;
+                    for (Map.Entry<Integer, Integer> entry : counts.entrySet()) {
+                        if (entry.getValue().equals(6)) {
+                            key = entry.getKey();
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < indexes.length; i++) {
+                        if (roll[indexes[i]] == key)
                             roll[indexes[i]] = 0;
                     }
                 }
