@@ -2,7 +2,6 @@ package farkler;
 
 import java.util.Scanner;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,7 +59,7 @@ public class Farkle {
                 for (int val : roll) {
                     counts.merge(val, 1, Integer::sum);
                 }
-                
+
                 if (counts.containsValue(6)) {
                     score += 3000;
                     int key = 0;
