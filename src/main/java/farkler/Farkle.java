@@ -1,7 +1,6 @@
 package farkler;
 
 import java.util.Scanner;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +22,7 @@ public class Farkle {
 
             Integer[] roll = Roll.roll(dice);
 
-            roll = new Integer[]{4, 4, 4, 4, 4, 4};
+            roll = new Integer[]{1, 3, 4, 2, 6, 5};
 
             System.out.printf("%s \n", Arrays.toString(roll));
             System.out.printf("%d \n", score);
@@ -48,6 +47,16 @@ public class Farkle {
 
             if (indexes.length >= 3) {
                 Map<Integer, Integer> counts = new HashMap<>();
+
+                Map<Integer, Integer> straight = Map.of(
+                    1, 1,
+                    2, 1,
+                    3, 1,
+                    4, 1,
+                    5, 1,
+                    6, 1
+                );
+
                 for (int val : roll) {
                     counts.merge(val, 1, Integer::sum);
                 }
@@ -133,6 +142,12 @@ public class Farkle {
                     for (int i = 0; i < indexes.length; i++) {
                         if (roll[indexes[i]] == key)
                             roll[indexes[i]] = 0;
+                    }
+                }
+                if (counts.equals(straight)) {
+                    score += 1500;
+                    for (int i = 0; i < indexes.length; i++) {
+                        roll[indexes[i]] = 0;
                     }
                 }
             }
