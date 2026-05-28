@@ -4,26 +4,22 @@ import java.util.Random;
 
 public class Die {
     private final int sides;
-    private int value;
 
     public Die(int sides) {
         this.sides = sides;
-        this.value = 0;
     }
 
     public int getSides() {
         return sides;
     }
 
-    public int getValue() {
-        return value;
-    }
-
-    public int roll() {
+    public Integer[] roll(int numRolls) {
         // roll number 1-num sides
-        Random random = new Random();
-        int result = random.nextInt(sides) + 1;
-        this.value = result;
+        Integer[] result = new Integer[numRolls];
+        for (int i = 0; i < numRolls; i++) {
+            Random random = new Random();
+            result[i] = random.nextInt(sides) + 1;
+        }
         return result;
     }
 }

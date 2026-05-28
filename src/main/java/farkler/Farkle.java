@@ -16,13 +16,12 @@ public class Farkle {
         int numDice = 6;
         int numDiceToTake = 0;
         while (true) {
-            Die[] dice = new Die[numDice];
-            Die die = new Die(6); // farkle uses d6s
-            Arrays.fill(dice, die);
+            Die d6 = new Die(6); // farkle uses d6s
 
-            Integer[] roll = Roll.roll(dice);
+            Integer[] roll = d6.roll(numDice);
+            
 
-            roll = new Integer[] { 1, 1, 1, 3, 3, 3 };
+            // roll = new Integer[] { 1, 1, 1, 3, 3, 3 };
 
             System.out.printf("%s \n", Arrays.toString(roll));
             System.out.printf("%d \n", score);

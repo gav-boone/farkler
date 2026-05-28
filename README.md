@@ -5,6 +5,16 @@ Wrote in Java bc I like my OOPsies to be coffee flavored.
 
 Handwritten, artisanal spaghetti code.
 
+## Commands
+
+```bash
+mvnw clean              # delete target/
+mvnw compile            # compile source
+mvnw test               # run tests
+mvnw package            # build JAR
+mvnw exec:java          # run Farkle
+mvnw clean compile exec:java  # clean build and run
+```
 
 To Do:
 [ ] Farkle Simulator - Can I play farkle?
