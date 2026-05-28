@@ -51,24 +51,28 @@ public class Farkle {
                 }
             }
 
-            if (indexes.length >= 4) {
-                handleBigCombos();
-            }
-
-            if (indexes.length >= 3) {
-                handleTriples();
-            }
-
-            for (int idx : indexes) {
-                if (roll[idx] == 1)
-                    SCORE += 100;
-                if (roll[idx] == 5)
-                    SCORE += 50;
-            }
+            handleScore();
 
             numDice -= numDiceToTake;
         }
         scanner.close();
+    }
+
+    private static void handleScore() {
+        if (indexes.length >= 4) {
+            handleBigCombos();
+        }
+
+        if (indexes.length >= 3) {
+            handleTriples();
+        }
+
+        for (int idx : indexes) {
+            if (roll[idx] == 1)
+                SCORE += 100;
+            if (roll[idx] == 5)
+                SCORE += 50;
+        }
     }
 
     private static void handleBigCombos() {
