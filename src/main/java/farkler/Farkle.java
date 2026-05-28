@@ -19,12 +19,10 @@ public class Farkle {
         SCORE = 0;
         int numDice = 6;
         int numDiceToTake = 0;
+        Die d6 = new Die(6); // farkle uses d6s
+        boolean roll_again = true;
         while (true) {
-            Die d6 = new Die(6); // farkle uses d6s
-
             roll = d6.roll(numDice);
-
-            roll = new Integer[] { 1, 1, 1, 1, 3, 3 };
 
             System.out.printf("%s \n", Arrays.toString(roll));
             System.out.printf("%d \n", SCORE);
@@ -54,6 +52,17 @@ public class Farkle {
             handleScore();
 
             numDice -= numDiceToTake;
+
+            if (numDice <= 0) {
+                numDice = 6;
+            }
+
+            System.out.printf("Dice Remaining: %d\nScore: %d\nRoll again?: ", numDice, SCORE);
+            roll_again = scanner.next().equals("y");
+            if (!roll_again) {
+                System.out.printf("YOU WIN\nSCORE: %d \n", SCORE);
+                break;
+            }
         }
         scanner.close();
     }
