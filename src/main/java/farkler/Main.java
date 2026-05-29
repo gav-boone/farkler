@@ -22,7 +22,7 @@ public class Main {
             scores[i] = new Farkle().play(strat);
         }
         Stats stats = new Stats(scores);
-        System.out.printf("%s Strategy:\n  Mean: %.1f | Q1: %d | Median: %d | Q3: %d | Max: %d | Farkle Rate: %.2f%%\n",
+        System.out.printf("%s Strategy | Mean: %.1f | Q1: %d | Median: %d | Q3: %d | Max: %d | Farkle Rate: %.2f%%\n",
                 name, stats.mean(), stats.quartile(1), stats.quartile(2), stats.quartile(3), stats.max(),
                 stats.farkleRate() * 100);
         return scores;
