@@ -57,7 +57,7 @@ public class Stats {
                 .xAxisTitle("Score").yAxisTitle("% of Games ≤ Score")
                 .build();
         chart.addSeries(strategyName, xData, yData).setMarker(org.knowm.xchart.style.markers.SeriesMarkers.NONE);
-        chart.getStyler().setLegendVisible(true);
+        chart.getStyler().setLegendVisible(false);
         chart.getStyler().setYAxisMin(0.0);
         chart.getStyler().setYAxisMax(100.0);
         chart.getStyler().setyAxisTickLabelsFormattingFunction(y -> {
