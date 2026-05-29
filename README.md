@@ -18,6 +18,6 @@ mvnw clean compile exec:java  # clean build and run
 
 To Do:
 [x] Farkle Simulator - Can I play farkle?
-[ ] Farkle Strategy Framework - Way for program to play farkle
+[x] Farkle Strategy Framework - Way for program to play farkle
 [ ] Find optimal farkle Strategy
 [ ] Beat my wife at farkle

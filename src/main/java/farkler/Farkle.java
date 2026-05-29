@@ -1,21 +1,14 @@
 package farkler;
 
-import java.util.Scanner;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Hello world!
- */
 public class Farkle {
     private static int SCORE;
     private static Integer[] roll;
     private static Integer[] indexes;
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
+    public int play(Strategy strat) {
         SCORE = 0;
         int numDice = 6;
         int numDiceToTake = 0;
@@ -23,48 +16,19 @@ public class Farkle {
         boolean roll_again = true;
         while (true) {
             roll = d6.roll(numDice);
-
-            System.out.printf("%s \n", Arrays.toString(roll));
-            System.out.printf("%d \n", SCORE);
-            System.out.print("How many dice to take (0 if farkle): ");
-            numDiceToTake = scanner.nextInt();
-
-            if (numDiceToTake == 0) {
-                System.out.printf("!!!!FARKLE!!!!\nSCORE: %d \n", SCORE);
+            indexes = strat.chooseDice(roll, SCORE);
+            if (indexes == null || indexes.length == 0)
                 break;
-            }
-
-            if (numDiceToTake > 6) {
-                System.out.print("Must be less than 6.");
-                continue;
-            }
-
-            if (numDiceToTake == 6) {
-                indexes = new Integer[] { 0, 1, 2, 3, 4, 5 };
-            } else {
-                indexes = new Integer[numDiceToTake];
-                for (int i = 0; i < numDiceToTake; i++) {
-                    System.out.print("Index to take (1-6): ");
-                    indexes[i] = scanner.nextInt() - 1;
-                }
-            }
-
             handleScore();
-
+            numDiceToTake = indexes.length;
             numDice -= numDiceToTake;
-
-            if (numDice <= 0) {
+            if (numDice <= 0)
                 numDice = 6;
-            }
-
-            System.out.printf("Dice Remaining: %d\nScore: %d\nRoll again?: ", numDice, SCORE);
-            roll_again = scanner.next().equals("y");
-            if (!roll_again) {
-                System.out.printf("YOU WIN\nSCORE: %d \n", SCORE);
+            roll_again = strat.rollAgain(SCORE, numDice);
+            if (!roll_again)
                 break;
-            }
         }
-        scanner.close();
+        return SCORE;
     }
 
     private static void handleScore() {
