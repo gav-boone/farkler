@@ -1,3 +1,7 @@
+farkler\Main.class
+farkler\Strategy.class
+farkler\NaiveStrategy.class
 farkler\Farkle.class
-farkler\Roll.class
 farkler\Die.class
+farkler\HumanStrategy.class
+farkler\Stats.class
